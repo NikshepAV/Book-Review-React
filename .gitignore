@@ -12,6 +12,9 @@
 # idea folder
 .idea
 
+# eslint
+.eslintrc.js
+
 # misc
 .DS_Store
 .env.local

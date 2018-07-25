@@ -4,7 +4,12 @@ import Books from './Books';
 
 class App extends Component {
     state = {
-        category: 'All Books'
+        category: [
+            {id: 1, value: 'All Books'},
+            {id: 2, value: 'Digital'},
+            {id: 3, value: 'Hard Copy'},
+            {id: 4, value: 'Kindle'},
+        ]
     };
 
     render() {
@@ -13,10 +18,10 @@ class App extends Component {
                 <NavBar/>
                 <div className="container">
                     <h1>
-                        {this.state.category}:
+                        {this.state.category[2].value}:
                     </h1>
+                    <Books/>
                 </div>
-                <Books/>
             </React.Fragment>
         );
     }
