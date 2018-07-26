@@ -8,92 +8,56 @@ const NavItem = props => {
             </a>
         </li>
     );
-}
+};
 
-class NavDropDown extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            isToggleOn: false
-        };
-    }
-
-    toggleDropDown = (e) => {
-        e.preventDefault();
-        this.setState(prevState => ({
-            isToggleOn: !prevState.isToggleOn
-        }));
-    }
-
+class NavBarDropDownMenu extends Component {
     render() {
-        const classDropdownMenu = 'dropdown-menu' + (this.state.isToggleOn ? ' show' : '')
         return (
             <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle"
-                   href="/" id="navbarDropdown"
-                   role="button"
-                   data-toggle="dropdown"
-                   aria-haspopup="true"
-                   aria-expanded="false"
-                   onClick={this.toggleDropDown}>
+                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                   data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {this.props.name}
                 </a>
-                <div className={classDropdownMenu}
-                     aria-labelledby="navbarDropdown">
+                <div className="dropdown-menu" aria-labelledby="navbarDropdown">
                     {this.props.children}
                 </div>
             </li>
-        )
+        );
     }
 }
 
 class NavBar extends Component {
     render() {
         return (
-            <React.Fragment>
+            <nav className="navbar navbar-expand-lg navbar-light">
+                <div className="container">
+                    <a className="navbar-brand" href="#">Book Review</a>
+                    <button className="navbar-toggler" type="button" data-toggle="collapse"
+                            data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
+                            aria-expanded="false" aria-label="Toggle navigation">
+                        <span className="navbar-toggler-icon"></span>
+                    </button>
 
-                <nav className="navbar navbar-expand-lg navbar-light">
-                    <div className="container">
-                        <a className="navbar-brand" href="/">Book Review</a>
-                        <button className="navbar-toggler" type="button"
-                                data-toggle="collapse"
-                                data-target="#navbarSupportedContent"
-                                aria-controls="navbarSupportedContent"
-                                aria-expanded="false"
-                                aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
 
-                        <div className="collapse navbar-collapse" id="navbarSupportedContent">
+                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
 
-                            <ul className="navbar-nav mr-auto">
-                                <NavDropDown name="Categories">
-                                    <a className="dropdown-item" href="/">
-                                        Digital
-                                    </a>
-                                    <a className="dropdown-item" href="/">
-                                        Hard Copy
-                                    </a>
-                                    <a className="dropdown-item" href="/">
-                                        Kindle
-                                    </a>
-                                </NavDropDown>
-                            </ul>
+                        <ul className="navbar-nav mr-auto">
+                            <NavBarDropDownMenu name="Categories">
+                                <a className="dropdown-item" href="#">Digital</a>
+                                <a className="dropdown-item" href="#">Hard Copy</a>
+                                <a className="dropdown-item" href="#">Kindle</a>
+                            </NavBarDropDownMenu>
+                        </ul>
 
-                            <ul className="navbar-nav ml-auto">
-                                <NavItem
-                                    path="/"
-                                    name="Log In"/>
-                                <NavItem
-                                    path="/"
-                                    name="Sign Up"/>
-                            </ul>
+                        <ul className="navbar-nav ml-auto">
+                            <NavItem name="Log In" path="#"/>
+                            <NavItem name="Sign Up" path="#"/>
+                        </ul>
 
-                        </div>
                     </div>
-                </nav>
 
-            </React.Fragment>
+                </div>
+            </nav>
         );
     }
 }
