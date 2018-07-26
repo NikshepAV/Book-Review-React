@@ -10,13 +10,13 @@ class App extends Component {
             {id: 3, value: 'Hard Copy'},
             {id: 4, value: 'Kindle'},
         ],
-        isLoggedIn: false
+        isLoggedIn: true
     };
 
     render() {
         return (
             <React.Fragment>
-                <NavBar/>
+                <NavBar isLoggedIn={this.state.isLoggedIn}/>
                 <div className="container">
                     <h1>
                         {this.state.category[2].value}:

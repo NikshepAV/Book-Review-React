@@ -10,6 +10,7 @@ const NavItem = props => {
     );
 };
 
+
 class NavBarDropDownMenu extends Component {
     render() {
         return (
@@ -28,6 +29,7 @@ class NavBarDropDownMenu extends Component {
 
 class NavBar extends Component {
     render() {
+        console.log(this.props.isLoggedIn);
         return (
             <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container">
@@ -47,12 +49,31 @@ class NavBar extends Component {
                                 <a className="dropdown-item" href="#">Hard Copy</a>
                                 <a className="dropdown-item" href="#">Kindle</a>
                             </NavBarDropDownMenu>
+                            {this.props.isLoggedIn &&
+                            <NavItem name="Add Book"
+                                     path="#"/>
+                            }
                         </ul>
 
                         <ul className="navbar-nav ml-auto">
-
-                            <NavItem name="Log In" path="#"/>
-                            <NavItem name="Sign Up" path="#"/>
+                            {this.props.isLoggedIn ? (
+                                <NavBarDropDownMenu
+                                    name={<img className="rounded-circle"
+                                               src="https://www.feedbackhall.com/uploads/user-icon.png"
+                                               alt=""
+                                               height="25px"
+                                               width="25px"/>}>
+                                    <a className="dropdown-item" href="#">Account</a>
+                                    <a className="dropdown-item" href="#">Log Out</a>
+                                </NavBarDropDownMenu>
+                            ) : (
+                                <React.Fragment>
+                                    <NavItem name="Log In"
+                                             path="#"/>
+                                    <NavItem name="Sign Up"
+                                             path="#"/>
+                                </React.Fragment>
+                            )}
                         </ul>
 
                     </div>

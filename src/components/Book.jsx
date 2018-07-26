@@ -5,7 +5,7 @@ class Book extends Component {
         return (
             <div className="col-md-3">
                 <a href="/">
-                    <img className="book" src={this.props.book.source} alt="book image" height="350" width="250"/>
+                    <img className="book" src={this.props.book.source} alt="" height="350" width="250"/>
                 </a>
             </div>
         );
