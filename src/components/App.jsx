@@ -9,7 +9,8 @@ class App extends Component {
             {id: 2, value: 'Digital'},
             {id: 3, value: 'Hard Copy'},
             {id: 4, value: 'Kindle'},
-        ]
+        ],
+        isLoggedIn: false
     };
 
     render() {

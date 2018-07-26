@@ -50,6 +50,7 @@ class NavBar extends Component {
                         </ul>
 
                         <ul className="navbar-nav ml-auto">
+
                             <NavItem name="Log In" path="#"/>
                             <NavItem name="Sign Up" path="#"/>
                         </ul>
