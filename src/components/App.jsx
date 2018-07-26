@@ -10,13 +10,20 @@ class App extends Component {
             {id: 3, value: 'Hard Copy'},
             {id: 4, value: 'Kindle'},
         ],
-        isLoggedIn: true
+        isLoggedIn: false
+    };
+
+    changeUserIsLoggedIn = () => {
+        this.setState({
+            isLoggedIn: !this.state.isLoggedIn
+        });
     };
 
     render() {
         return (
             <React.Fragment>
-                <NavBar isLoggedIn={this.state.isLoggedIn}/>
+                <NavBar isLoggedIn={this.state.isLoggedIn}
+                        changeUserIsLoggedIn={this.changeUserIsLoggedIn}/>
                 <div className="container">
                     <h1>
                         {this.state.category[2].value}:

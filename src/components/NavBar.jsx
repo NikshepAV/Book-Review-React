@@ -3,7 +3,9 @@ import React, {Component} from 'react';
 const NavItem = props => {
     return (
         <li className="nav-item">
-            <a className="nav-link" href={props.path}>
+            <a className="nav-link"
+               href={props.path}
+               onClick={props.onClick}>
                 {props.name}
             </a>
         </li>
@@ -29,7 +31,6 @@ class NavBarDropDownMenu extends Component {
 
 class NavBar extends Component {
     render() {
-        console.log(this.props.isLoggedIn);
         return (
             <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container">
@@ -63,15 +64,24 @@ class NavBar extends Component {
                                                alt=""
                                                height="25px"
                                                width="25px"/>}>
-                                    <a className="dropdown-item" href="#">Account</a>
-                                    <a className="dropdown-item" href="#">Log Out</a>
+                                    <a className="dropdown-item"
+                                       href="#">
+                                        Account
+                                    </a>
+                                    <a className="dropdown-item"
+                                       href="#"
+                                       onClick={this.props.changeUserIsLoggedIn}>
+                                        Log Out
+                                    </a>
                                 </NavBarDropDownMenu>
                             ) : (
                                 <React.Fragment>
                                     <NavItem name="Log In"
-                                             path="#"/>
+                                             path="#"
+                                             onClick={this.props.changeUserIsLoggedIn}/>
                                     <NavItem name="Sign Up"
-                                             path="#"/>
+                                             path="#"
+                                             onClick={this.props.changeUserIsLoggedIn}/>
                                 </React.Fragment>
                             )}
                         </ul>
