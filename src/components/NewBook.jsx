@@ -33,9 +33,10 @@ class NewBook extends Component {
                                        onChange={e => {
                                            this.setState({newBookImage: e.target.value})
                                        }}
+                                       required
                                        id="bookImageSource"/>
                             </div>
-                            <input className="btn btn-info" type="submit"/>
+                            <input className="btn-custom" type="submit"/>
                         </form>
                     </div>
                 </div>
