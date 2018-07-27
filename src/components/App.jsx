@@ -3,6 +3,7 @@ import {BrowserRouter as Router, Route, Switch} from 'react-router-dom';
 import NavBar from './NavBar';
 import Books from './Books';
 import NewBook from './NewBook';
+import Profile from './Profile';
 
 class App extends Component {
     state = {
@@ -21,6 +22,14 @@ class App extends Component {
             {id: 6, source: 'https://images.gr-assets.com/books/1372039943l/387190.jpg'},
             {id: 7, source: 'https://images.gr-assets.com/books/1409666208l/23150337.jpg'},
             {id: 8, source: 'https://images.gr-assets.com/books/1392791656l/4921.jpg'},
+        ],
+        users: [
+            {
+                id: 1,
+                name: 'Nikshep A V',
+                email: 'nikshep@mavenhive.in',
+                image: 'https://www.feedbackhall.com/uploads/user-icon.png'
+            }
         ],
         isLoggedIn: false
     };
@@ -45,7 +54,8 @@ class App extends Component {
 
             <Router>
                 <React.Fragment>
-                    <NavBar isLoggedIn={this.state.isLoggedIn}
+                    <NavBar loggedInUser={this.state.users[0]}
+                            isLoggedIn={this.state.isLoggedIn}
                             changeUserIsLoggedIn={this.changeUserIsLoggedIn}/>
                     <div className="container">
                         <Switch>
@@ -64,7 +74,11 @@ class App extends Component {
                                    render={() => {
                                        return <NewBook handleAddNewBook={this.handleAddNewBook}/>;
                                    }}/>
-                            <Route path="/books"/>
+                            <Route path="/users/:id" render={() => {
+                                return (
+                                    <Profile profileUser={this.state.users[0]}/>
+                                );
+                            }}/>
                         </Switch>
                     </div>
                 </React.Fragment>
