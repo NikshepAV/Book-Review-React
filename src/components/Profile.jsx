@@ -6,7 +6,8 @@ class Profile extends Component {
             <div className="container">
                 <div className="text-center">
                     <div className="profile-info">
-                        <img className="img-rounded"
+                        <img className="rounded"
+                             alt=""
                              height="250"
                              width="250"
                              src={this.props.profileUser.image}/>

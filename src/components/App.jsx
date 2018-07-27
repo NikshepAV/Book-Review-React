@@ -4,6 +4,7 @@ import NavBar from './NavBar';
 import Books from './Books';
 import NewBook from './NewBook';
 import Profile from './Profile';
+import ShowBook from './ShowBook';
 
 class App extends Component {
     state = {
@@ -14,21 +15,33 @@ class App extends Component {
             {value: 'Kindle'},
         ],
         books: [
-            {id: 1, source: 'https://images.gr-assets.com/books/1432468943l/70535.jpg'},
-            {id: 2, source: 'https://images.gr-assets.com/books/1511288482l/11084145.jpg'},
-            {id: 3, source: 'https://images.gr-assets.com/books/1428219118l/10907.jpg'},
-            {id: 4, source: 'https://images.gr-assets.com/books/1500472519l/13605031.jpg'},
-            {id: 5, source: 'https://images.gr-assets.com/books/1474171184l/136251.jpg'},
-            {id: 6, source: 'https://images.gr-assets.com/books/1372039943l/387190.jpg'},
-            {id: 7, source: 'https://images.gr-assets.com/books/1409666208l/23150337.jpg'},
-            {id: 8, source: 'https://images.gr-assets.com/books/1392791656l/4921.jpg'},
+            {
+                id: 0,
+                title: '2001: A Space Odyssey',
+                author: 'Arthur C. Clark',
+                description: 'A sufficiently long enough description for the book in question.',
+                image: 'https://images.gr-assets.com/books/1432468943l/70535.jpg'
+            },
+            {
+                id: 1,
+                title: 'Steve Jobs',
+                author: 'Walter Isaacson',
+                description: 'A sufficiently long enough description for the book in question.',
+                image: 'https://images.gr-assets.com/books/1511288482l/11084145.jpg'
+            }
+            // {id: 3, image: 'https://images.gr-assets.com/books/1428219118l/10907.jpg'},
+            // {id: 4, image: 'https://images.gr-assets.com/books/1500472519l/13605031.jpg'},
+            // {id: 5, image: 'https://images.gr-assets.com/books/1474171184l/136251.jpg'},
+            // {id: 6, image: 'https://images.gr-assets.com/books/1372039943l/387190.jpg'},
+            // {id: 7, image: 'https://images.gr-assets.com/books/1409666208l/23150337.jpg'},
+            // {id: 8, image: 'https://images.gr-assets.com/books/1392791656l/4921.jpg'},
         ],
         users: [
             {
-                id: 1,
+                id: 0,
                 name: 'Nikshep A V',
                 email: 'nikshep@mavenhive.in',
-                image: 'https://www.feedbackhall.com/uploads/user-icon.png'
+                image: 'https://avatars2.githubusercontent.com/u/18426392?s=460&v=4'
             }
         ],
         isLoggedIn: false
@@ -40,12 +53,16 @@ class App extends Component {
         });
     };
 
-    handleAddNewBook = newBookImage => {
+    handleAddNewBook = newBook => {
         const books = [...this.state.books];
-        books.push({
-            id: this.state.books.count + 1,
-            source: newBookImage
-        });
+        const book = {
+            id: this.state.books.length,
+            title: newBook.title,
+            author: newBook.author,
+            description: newBook.description,
+            image: newBook.image
+        };
+        books.push(book);
         this.setState({books: books});
     };
 
@@ -63,8 +80,8 @@ class App extends Component {
                                    render={() => {
                                        return (
                                            <React.Fragment>
-                                               <h1>
-                                                   {this.state.category[2].value}:
+                                               <h1 className="current-category">
+                                                   {this.state.category[0].value}:
                                                </h1>
                                                <Books books={this.state.books}/>
                                            </React.Fragment>
@@ -79,6 +96,11 @@ class App extends Component {
                                     <Profile profileUser={this.state.users[0]}/>
                                 );
                             }}/>
+                            <Route path="/books/:id"
+                                   render={() => {
+                                       return <ShowBook book={this.state.books[0]}
+                                                        isLoggedIn={this.state.isLoggedIn}/>;
+                                   }}/>
                         </Switch>
                     </div>
                 </React.Fragment>
