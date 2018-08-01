@@ -47,9 +47,15 @@ class NavBar extends Component {
 
                         <ul className="navbar-nav mr-auto">
                             <NavBarDropDownMenu name="Categories">
-                                <a className="dropdown-item" href="">Digital</a>
-                                <a className="dropdown-item" href="">Hard Copy</a>
-                                <a className="dropdown-item" href="">Kindle</a>
+                                <a className="dropdown-item">
+                                    Digital
+                                </a>
+                                <a className="dropdown-item">
+                                    Hard Copy
+                                </a>
+                                <a className="dropdown-item">
+                                    Kindle
+                                </a>
                             </NavBarDropDownMenu>
                             {this.props.isLoggedIn &&
                             <li className="nav-item">
@@ -69,12 +75,12 @@ class NavBar extends Component {
                                                alt=""
                                                height="25px"
                                                width="25px"/>}>
-                                    <Link class="dropdown-item"
-                                          to="/users/1">
+                                    <Link className="dropdown-item"
+                                          to="/users/0">
                                         Account
                                     </Link>
                                     <a className="dropdown-item"
-                                       href="#"
+
                                        onClick={this.props.changeUserIsLoggedIn}>
                                         Log Out
                                     </a>
@@ -82,10 +88,8 @@ class NavBar extends Component {
                             ) : (
                                 <React.Fragment>
                                     <NavItem name="Log In"
-                                             path="#"
                                              onClick={this.props.changeUserIsLoggedIn}/>
                                     <NavItem name="Sign Up"
-                                             path="#"
                                              onClick={this.props.changeUserIsLoggedIn}/>
                                 </React.Fragment>
                             )}
