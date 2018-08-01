@@ -78,3 +78,45 @@ p.alert, p.notice {
     box-shadow: 3px 3px 5px 6px #ccc;
     padding: 1.5em 1.25em;
 }
+
+/* Profile styles */
+.profile-info {
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    padding: 1.5em 1.25em;
+}
+
+/* Button styles */
+.btn-custom {
+    color: #dab10d;
+    background-color: #fff;
+    border: 1px solid #dab10d;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.btn-custom:hover {
+    text-decoration: none;
+    background-color: #dab10d;
+    color: #fff;
+    transition: 0.5s;
+}
+
+.btn-custom2 {
+    color: #333;
+    background-color: #fff;
+    border: 1px solid #222;
+    padding: 8px 20px;
+    border-radius: 5px;
+    font-family: "Ubuntu", sans-serif;
+}
+
+.btn-custom2:hover {
+    text-decoration: none;
+    background-color: #333;
+    color: #fff;
+    transition: 0.5s;
+}

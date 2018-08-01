@@ -53,7 +53,10 @@ class NavBar extends Component {
                             </NavBarDropDownMenu>
                             {this.props.isLoggedIn &&
                             <li className="nav-item">
-                                <Link className="nav-link" to="/books/new">Add Book</Link>
+                                <Link className="nav-link"
+                                      to="/books/new">
+                                    Add Book
+                                </Link>
                             </li>
                             }
                         </ul>
@@ -62,14 +65,14 @@ class NavBar extends Component {
                             {this.props.isLoggedIn ? (
                                 <NavBarDropDownMenu
                                     name={<img className="rounded-circle"
-                                               src="https://www.feedbackhall.com/uploads/user-icon.png"
+                                               src={this.props.loggedInUser.image}
                                                alt=""
                                                height="25px"
                                                width="25px"/>}>
-                                    <a className="dropdown-item"
-                                       href="#">
+                                    <Link class="dropdown-item"
+                                          to="/users/1">
                                         Account
-                                    </a>
+                                    </Link>
                                     <a className="dropdown-item"
                                        href="#"
                                        onClick={this.props.changeUserIsLoggedIn}>
