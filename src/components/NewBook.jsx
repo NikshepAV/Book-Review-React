@@ -19,7 +19,7 @@ class NewBook extends Component {
       author: this.state.author,
       description: this.state.description,
       image: this.state.image
-    }
+    };
     this.props.handleAddNewBook(newBook);
     this.setState({fireRedirect: true});
   };
