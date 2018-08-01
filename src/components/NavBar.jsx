@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {Link} from 'react-router-dom';
 
 const NavItem = props => {
     return (
@@ -17,7 +18,7 @@ class NavBarDropDownMenu extends Component {
     render() {
         return (
             <li className="nav-item dropdown">
-                <a className="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button"
+                <a className="nav-link dropdown-toggle" href="" id="navbarDropdown" role="button"
                    data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                     {this.props.name}
                 </a>
@@ -34,7 +35,7 @@ class NavBar extends Component {
         return (
             <nav className="navbar navbar-expand-lg navbar-light">
                 <div className="container">
-                    <a className="navbar-brand" href="#">Book Review</a>
+                    <Link className="navbar-brand" to="/">Book Review</Link>
                     <button className="navbar-toggler" type="button" data-toggle="collapse"
                             data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
                             aria-expanded="false" aria-label="Toggle navigation">
@@ -46,13 +47,14 @@ class NavBar extends Component {
 
                         <ul className="navbar-nav mr-auto">
                             <NavBarDropDownMenu name="Categories">
-                                <a className="dropdown-item" href="#">Digital</a>
-                                <a className="dropdown-item" href="#">Hard Copy</a>
-                                <a className="dropdown-item" href="#">Kindle</a>
+                                <a className="dropdown-item" href="">Digital</a>
+                                <a className="dropdown-item" href="">Hard Copy</a>
+                                <a className="dropdown-item" href="">Kindle</a>
                             </NavBarDropDownMenu>
                             {this.props.isLoggedIn &&
-                            <NavItem name="Add Book"
-                                     path="#"/>
+                            <li className="nav-item">
+                                <Link className="nav-link" to="/books/new">Add Book</Link>
+                            </li>
                             }
                         </ul>
 

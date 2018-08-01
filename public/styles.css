@@ -23,7 +23,14 @@ p.alert, p.notice {
 
 .navbar-brand {
     color: #222;
+    padding: 3px;
     letter-spacing: 1.4px;
+}
+
+.navbar-brand:hover {
+    background-color: #dab10d;
+    color: #fff !important;
+    transition: 0.5s;
 }
 
 .navbar-nav > .nav-item > .nav-link {
@@ -50,10 +57,21 @@ p.alert, p.notice {
     color: #fff;
 }
 
+/* Book styles */
+
 .book {
     height: 350px;
     width: 250px;
     margin-bottom: 40px;
+    box-sizing: border-box;
+    background-color: #fff;
+    border-radius: 5px;
+    box-shadow: 3px 3px 5px 6px #ccc;
+    padding: 1.5em 1.25em;
+}
+
+/* New Book styles */
+.new-book-form {
     box-sizing: border-box;
     background-color: #fff;
     border-radius: 5px;
