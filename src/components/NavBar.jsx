@@ -1,19 +1,6 @@
 import React from 'react';
 import {Link} from 'react-router-dom';
 
-const NavItem = props => {
-  return (
-    <li className="nav-item">
-      <a className="nav-link"
-         href={props.path}
-         onClick={props.onClick}>
-        {props.name}
-      </a>
-    </li>
-  );
-};
-
-
 function NavBarDropDownMenu(props) {
   return (
     <li className="nav-item dropdown">
@@ -77,17 +64,22 @@ function NavBar(props) {
                   Account
                 </Link>
                 <a className="dropdown-item"
-
                    onClick={props.changeUserIsLoggedIn}>
                   Log Out
                 </a>
               </NavBarDropDownMenu>
             ) : (
               <React.Fragment>
-                <NavItem name="Log In"
-                         onClick={props.changeUserIsLoggedIn}/>
-                <NavItem name="Sign Up"
-                         onClick={props.changeUserIsLoggedIn}/>
+                <li className="nav-item">
+                  <a className="nav-link"
+                     href="#"
+                     onClick={props.changeUserIsLoggedIn}>
+                    <div id="signInWithGoogle">
+                      <span className="icon"></span>
+                      <span>Sign In with Google</span>
+                    </div>
+                  </a>
+                </li>
               </React.Fragment>
             )}
           </ul>

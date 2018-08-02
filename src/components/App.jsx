@@ -91,16 +91,16 @@ class App extends Component {
                      render={() => {
                        return <NewBook handleAddNewBook={this.handleAddNewBook}/>;
                      }}/>
-              <Route path="/users/:id" render={() => {
-                return (
-                  <Profile profileUser={this.state.users[0]}/>
-                );
-              }}/>
               <Route path="/books/:id"
                      render={(props) => {
                        return <ShowBook book={this.state.books[props.match.params.id]}
                                         isLoggedIn={this.state.isLoggedIn}/>;
                      }}/>
+              <Route path="/users/:id" render={() => {
+                return (
+                  <Profile profileUser={this.state.users[0]}/>
+                );
+              }}/>
             </Switch>
           </div>
         </React.Fragment>
