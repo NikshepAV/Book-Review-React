@@ -5,52 +5,28 @@ import Books from './Books';
 import NewBook from './NewBook';
 import Profile from './Profile';
 import ShowBook from './ShowBook';
+import axios from 'axios';
 
 class App extends Component {
-  state = {
-    category: [
-      {value: 'All Books'},
-      {value: 'Digital'},
-      {value: 'Hard Copy'},
-      {value: 'Kindle'},
-    ],
-    books: [
-      {
-        id: 0,
-        title: '2001: A Space Odyssey',
-        author: 'Arthur C. Clark',
-        description: 'A sufficiently long enough description for the book in question.',
-        image: 'https://images.gr-assets.com/books/1432468943l/70535.jpg'
-      },
-      {
-        id: 1,
-        title: 'Steve Jobs',
-        author: 'Walter Isaacson',
-        description: 'A sufficiently long enough description for the book in question.',
-        image: 'https://images.gr-assets.com/books/1511288482l/11084145.jpg'
-      }
-      // {id: 3, image: 'https://images.gr-assets.com/books/1428219118l/10907.jpg'},
-      // {id: 4, image: 'https://images.gr-assets.com/books/1500472519l/13605031.jpg'},
-      // {id: 5, image: 'https://images.gr-assets.com/books/1474171184l/136251.jpg'},
-      // {id: 6, image: 'https://images.gr-assets.com/books/1372039943l/387190.jpg'},
-      // {id: 7, image: 'https://images.gr-assets.com/books/1409666208l/23150337.jpg'},
-      // {id: 8, image: 'https://images.gr-assets.com/books/1392791656l/4921.jpg'},
-    ],
-    users: [
-      {
-        id: 0,
-        name: 'Nikshep A V',
-        email: 'nikshep@mavenhive.in',
-        image: 'https://avatars2.githubusercontent.com/u/18426392?s=460&v=4'
-      }
-    ],
-    isLoggedIn: false
-  };
+
+  componentDidMount() {
+    axios.get('/apis')
+      .then(res => {
+        this.setState({
+          category: res.data.category,
+          books: res.data.books,
+          users: res.data.users,
+          isLoggedIn: res.data.isLoggedIn
+        });
+      })
+      .catch(err => console.log(err));
+  }
 
   changeUserIsLoggedIn = () => {
-    this.setState({
-      isLoggedIn: !this.state.isLoggedIn
-    });
+    this.setState({isLoggedIn: !this.state.isLoggedIn});
+    axios.post('/auth', {})
+      .then(res => console.log(res.data.message))
+      .catch(err => console.log(err))
   };
 
   handleAddNewBook = newBook => {
@@ -64,49 +40,60 @@ class App extends Component {
     };
     books.push(book);
     this.setState({books: books});
+    axios.post('/book/new', {books})
+      .then(res => console.log(res.data.message))
+      .catch(err => console.log(err));
   };
 
   render() {
-    return (
-
-      <Router>
-        <React.Fragment>
-          <NavBar loggedInUser={this.state.users[0]}
-                  isLoggedIn={this.state.isLoggedIn}
-                  changeUserIsLoggedIn={this.changeUserIsLoggedIn}/>
-          <div className="container">
-            <Switch>
-              <Route exact path="/"
-                     render={() => {
-                       return (
-                         <React.Fragment>
-                           <h1 className="current-category">
-                             {this.state.category[0].value}:
-                           </h1>
-                           <Books books={this.state.books}/>
-                         </React.Fragment>
-                       );
-                     }}/>
-              <Route path="/books/new"
-                     render={() => {
-                       return <NewBook handleAddNewBook={this.handleAddNewBook}/>;
-                     }}/>
-              <Route path="/books/:id"
-                     render={(props) => {
-                       return <ShowBook book={this.state.books[props.match.params.id]}
-                                        isLoggedIn={this.state.isLoggedIn}/>;
-                     }}/>
-              <Route path="/users/:id" render={() => {
-                return (
-                  <Profile profileUser={this.state.users[0]}/>
-                );
-              }}/>
-            </Switch>
-          </div>
-        </React.Fragment>
-      </Router>
-
-    );
+    if (this.state) {
+      return (
+        <Router>
+          <React.Fragment>
+            <NavBar loggedInUser={this.state.users[0]}
+                    isLoggedIn={this.state.isLoggedIn}
+                    changeUserIsLoggedIn={this.changeUserIsLoggedIn}/>
+            <div className="container">
+              <Switch>
+                <Route exact path="/"
+                       render={() => {
+                         return (
+                           <React.Fragment>
+                             <h1 className="current-category">
+                               {this.state.category[0].value}:
+                             </h1>
+                             <Books books={this.state.books}/>
+                           </React.Fragment>
+                         );
+                       }}/>
+                <Route path="/books/new"
+                       render={() => {
+                         return <NewBook handleAddNewBook={this.handleAddNewBook}/>;
+                       }}/>
+                <Route path="/books/:id"
+                       render={(props) => {
+                         return <ShowBook book={this.state.books[props.match.params.id]}
+                                          isLoggedIn={this.state.isLoggedIn}/>;
+                       }}/>
+                <Route path="/users/:id" render={() => {
+                  return (
+                    <Profile profileUser={this.state.users[0]}/>
+                  );
+                }}/>
+              </Switch>
+            </div>
+          </React.Fragment>
+        </Router>
+      );
+    } else {
+      return (
+        <div className="row">
+          <img className="mx-auto"
+               src="/loading.gif"
+               alt=""/>
+        </div>
+      );
+    }
   }
 }
 
